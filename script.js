@@ -603,12 +603,9 @@ function navigateToPage(targetPageNum) {
       if (currentPage === 4 && !typewriterTriggered) {
         triggerTypewriter();
       } else if (currentPage === 8) {
-        triggerMicroConfetti();
         if (!finalTypewriterTriggered) {
           triggerFinalTypewriter();
         }
-      } else if (currentPage === 7) {
-        triggerMicroConfetti();
       }
     });
   }
@@ -1417,7 +1414,6 @@ function resetStorybookToBeginning() {
 }
 
 function triggerMicroConfetti() {
-  playSparkleSound();
   const confettiCount = 35;
   const colors = ["#e5be75", "#c99b4e", "#c88a95", "#ffffff", "#fcf8f0"];
 
