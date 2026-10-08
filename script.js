@@ -455,12 +455,12 @@ function playQuillScratchSound() {
       // Authentic Fountain Pen acoustic frequency shaping (smooth, velvety, crisp glide)
       const biquad = ctx.createBiquadFilter();
       biquad.type = "lowpass";
-      biquad.frequency.setValueAtTime(3200, ctx.currentTime);
+      biquad.frequency.setValueAtTime(5400, ctx.currentTime);
       biquad.Q.setValueAtTime(0.707, ctx.currentTime);
 
-      // Warm, gentle ASMR whisper gain (soothing, never irritating)
+      // Balanced audible fountain pen paper glide volume
       const gainNode = ctx.createGain();
-      gainNode.gain.setValueAtTime(0.22, ctx.currentTime);
+      gainNode.gain.setValueAtTime(0.60, ctx.currentTime);
 
       source.connect(biquad);
       biquad.connect(gainNode);
@@ -478,13 +478,13 @@ function playQuillScratchSound() {
     } catch (e) {}
   }
 
-  // Engine 2: Preloaded DOM Audio Fallback (low volume, warm)
+  // Engine 2: Preloaded DOM Audio Fallback (balanced volume)
   try {
     const domId = SOUND_DOM_IDS[key];
     const domEl = domId ? document.getElementById(domId) : null;
     if (domEl) {
       domEl.currentTime = 0;
-      domEl.volume = 0.22;
+      domEl.volume = 0.60;
       domEl.play().catch(() => {});
     }
   } catch (e) {}
