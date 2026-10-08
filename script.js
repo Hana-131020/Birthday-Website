@@ -490,19 +490,19 @@ function playQuillScratchSound() {
   } catch (e) {}
 }
 
-// 4. SPARKLE / CONFETTI BURST CHIME SOUND EFFECT: Gentle, whisper-soft fairytale chime (low dB)
-function playSparkleSound() {
-  playAudioClip("sparkle", 0.16); // Soft & delicate (reduced dB)
+// 4. SPARKLE / CONFETTI BURST CHIME SOUND EFFECT: Gentle, audible fairytale chime
+function playSparkleSound(vol = 0.65) {
+  playAudioClip("sparkle", vol);
 }
 
-// 5. LETTER OPEN SOUND EFFECT: Soft, elegant paper unfolding / opening rustle (reduced dB)
-function playLetterOpenSound() {
-  playAudioClip("letterOpen", 0.28); // Soft & smooth popup sound
+// 5. LETTER OPEN SOUND EFFECT: Crisp, satisfying pop-up & paper unfolding
+function playLetterOpenSound(vol = 0.80) {
+  playAudioClip("letterOpen", vol);
 }
 
-// 6. LETTER CLOSE SOUND EFFECT: Soft, gentle paper folding / closing rustle (reduced dB)
-function playLetterCloseSound() {
-  playAudioClip("letterClose", 0.24); // Soft & smooth popup close
+// 6. LETTER CLOSE SOUND EFFECT: Soft, gentle paper closing rustle
+function playLetterCloseSound(vol = 0.65) {
+  playAudioClip("letterClose", vol);
 }
 
 
@@ -1081,7 +1081,8 @@ function initInteractions() {
 
   const openEpilogueSurprise = () => {
     if (epilogueModal) {
-      playLetterOpenSound();
+      playLetterOpenSound(0.85);
+      playSparkleSound(0.70);
       epilogueModal.classList.remove("hidden");
       epilogueModal.setAttribute("aria-hidden", "false");
       triggerMicroConfetti();
@@ -1089,7 +1090,7 @@ function initInteractions() {
   };
 
   const closeEpilogueSurprise = () => {
-    playLetterCloseSound();
+    playLetterCloseSound(0.65);
     if (epilogueModal) {
       epilogueModal.classList.add("hidden");
       epilogueModal.setAttribute("aria-hidden", "true");
@@ -1113,11 +1114,12 @@ function initInteractions() {
     if (!hugCardContainer) return;
     const isNowOpen = hugCardContainer.classList.toggle("is-open");
     if (isNowOpen) {
-      playLetterOpenSound();
+      playLetterOpenSound(0.85);
+      playSparkleSound(0.70);
       triggerMicroConfetti();
       if (hugCardBadge) hugCardBadge.textContent = "✨ Thirumba Moodikka Tap Pannu ✨";
     } else {
-      playLetterCloseSound();
+      playLetterCloseSound(0.65);
       if (hugCardBadge) hugCardBadge.textContent = "✨ Thottu Thirandhu Paaru ✨";
     }
   };
